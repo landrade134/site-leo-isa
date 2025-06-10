@@ -200,7 +200,7 @@
       <div class="musica-titulo">Seu Astral</div>
       <div class="musica-artista">Jorge e Mateus</div>
     </div>
-    <button class="btn-play" onclick="alternarAudio(this)">▶</button>
+    <button class="btn-play" onclick="alternarAudio(this)">▶️</button>
   </div>
 
   <audio id="audio" src="seu_astral.mp3" preload="none"></audio>
@@ -241,10 +241,10 @@
       const audio = document.getElementById('audio');
       if (audio.paused) {
         audio.play();
-        botao.textContent = '⏸';
+        botao.textContent = '⏸️';
       } else {
         audio.pause();
-        botao.textContent = '▶';
+        botao.textContent = '▶️';
       }
     }
   </script>
