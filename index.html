@@ -236,10 +236,9 @@
     </div>
   </div>
   <h2>Leonardo & Isabella</h2>
+    ...
   <div class="mensagem">
-    Você veio quando eu já não acreditava mais em ninguém, quando já não tinha esperança nas pessoas. Há alguns meses, você mudou completamente a minha forma de pensar.<br /><br />
-    Você é linda como a noite estrelada de Van Gogh. Seus olhos têm o brilho de um lírio encantado. Quando estou com você, me sinto vivo, como quando a Rapunzel saiu da torre.<br /><br />
-    Você me dedicou uma música do Luan Santana há alguns meses — algo que ninguém nunca fez por mim — e agora, eu dedico uma a você: Jorge e Mateus – Seu Astral, mais especificamente:<br />
+    Você me dedicou uma música do Luan Santana há alguns meses [...]<br />
     “Eu viajei no seu olhar, no teu sorriso<br />
     Nos teus segredos<br />
     Eu descobri o que é amar<br />
@@ -259,7 +258,88 @@
 
   <audio id="audio" src="seu_astral.mp3" preload="none"></audio>
 
+  <!-- NOVO PLAYER ESTILO SPOTIFY -->
+  <div class="spotify-widget">
+    <img src="capa_musica.jpg" alt="Capa do Álbum" class="widget-cover" />
+    <div class="widget-info">
+      <div class="widget-title">War Eternal</div>
+      <div class="widget-artist">Arch Enemy</div>
+    </div>
+    <div class="widget-controls">
+      <i id="likeBtn" class="fa-regular fa-heart"></i>
+      <i id="playPauseBtn" class="fa-solid fa-play"></i>
+    </div>
+  </div>
+
+  <audio id="audioWidget" src="war_eternal.mp3"></audio>
+
+  <!-- Font Awesome para os ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    .spotify-widget {
+      background-color: #5c3b1f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 380px;
+      margin: 40px auto;
+      box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
+    }
+
+    .widget-cover {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-right: 16px;
+    }
+
+    .widget-info {
+      flex-grow: 1;
+    }
+
+    .widget-title {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .widget-artist {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .widget-controls i {
+      font-size: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .widget-controls .fa-heart.liked {
+      color: red;
+    }
+
+    .widget-controls .fa-heart {
+      color: white;
+    }
+
+    .widget-controls .fa-play,
+    .widget-controls .fa-pause {
+      color: white;
+    }
+
+    .widget-controls i:hover {
+      color: #1db954;
+    }
+  </style>
+
   <script>
+    // Contador e carrossel permanecem iguais
     const dataInicial = new Date('2024-06-27T00:00:00');
 
     function calcularTempo(dataInicial, dataFinal) {
@@ -326,13 +406,35 @@
       const icone = document.getElementById('icone-play');
       if (audio.paused) {
         audio.play();
-        icone.setAttribute('d', 'M6 19h4V5H6v14zm8-14v14h4V5h-4z');
         icone.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
       } else {
         audio.pause();
         icone.innerHTML = '<path d="M8 5v14l11-7z"/>';
       }
     }
+
+    // NOVO SCRIPT DO PLAYER ESTILO SPOTIFY
+    const audioWidget = document.getElementById('audioWidget');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const likeBtn = document.getElementById('likeBtn');
+
+    playPauseBtn.addEventListener('click', () => {
+      if (audioWidget.paused) {
+        audioWidget.play();
+        playPauseBtn.classList.remove('fa-play');
+        playPauseBtn.classList.add('fa-pause');
+      } else {
+        audioWidget.pause();
+        playPauseBtn.classList.remove('fa-pause');
+        playPauseBtn.classList.add('fa-play');
+      }
+    });
+
+    likeBtn.addEventListener('click', () => {
+      likeBtn.classList.toggle('liked');
+      likeBtn.classList.toggle('fa-regular');
+      likeBtn.classList.toggle('fa-solid');
+    });
   </script>
 </body>
 </html>
