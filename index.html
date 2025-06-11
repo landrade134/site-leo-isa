@@ -175,9 +175,10 @@
     </div>
   </div>
   <h2>Leonardo & Isabella</h2>
-    ...
-  <div class="mensagem">
-    Você me dedicou uma música do Luan Santana há alguns meses [...]<br />
+ <div class="mensagem">
+    Você veio quando eu já não acreditava mais em ninguém, quando já não tinha esperança nas pessoas. Há alguns meses, você mudou completamente a minha forma de pensar.<br /><br />
+    Você é linda como a noite estrelada de Van Gogh. Seus olhos têm o brilho de um lírio encantado. Quando estou com você, me sinto vivo, como quando a Rapunzel saiu da torre.<br /><br />
+    Você me dedicou uma música do Luan Santana há alguns meses — algo que ninguém nunca fez por mim — e agora, eu dedico uma a você: Jorge e Mateus – Seu Astral, mais especificamente:<br />
     “Eu viajei no seu olhar, no teu sorriso<br />
     Nos teus segredos<br />
     Eu descobri o que é amar<br />
@@ -207,103 +208,106 @@
 
   <style>
   .spotify-widget {
-    background-color: #5c3b1f;
-    color: white;
-    display: flex;
+  background-color: #5c3b1f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 380px;
+  margin: 40px auto;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
+  gap: 12px;
+}
+
+.widget-cover {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.widget-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.widget-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.widget-artist {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.widget-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.widget-controls i {
+  font-size: 22px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.widget-controls .fa-heart.liked {
+  color: red;
+}
+
+.widget-controls .fa-heart {
+  color: white;
+}
+
+.widget-controls .fa-play,
+.widget-controls .fa-pause {
+  color: white;
+}
+
+.widget-controls i:hover {
+  color: #1db954;
+}
+
+/* Responsivo para telas pequenas: manter em linha como Spotify mobile */
+@media (max-width: 600px) {
+  .spotify-widget {
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding: 16px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 380px;
-    margin: 40px auto;
-    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
-    gap: 12px;
+    padding: 12px;
+    width: 95%;
   }
 
   .widget-cover {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
-    object-fit: cover;
+    width: 50px;
+    height: 50px;
   }
 
   .widget-info {
-    flex-grow: 1;
+    text-align: left;
+    margin: 0 10px;
   }
 
   .widget-title {
-    font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .widget-artist {
-    color: #ccc;
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .widget-controls {
+    gap: 8px;
   }
 
   .widget-controls i {
     font-size: 22px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: color 0.3s ease;
   }
-
-  .widget-controls .fa-heart.liked {
-    color: red;
-  }
-
-  .widget-controls .fa-heart {
-    color: white;
-  }
-
-  .widget-controls .fa-play,
-  .widget-controls .fa-pause {
-    color: white;
-  }
-
-  .widget-controls i:hover {
-    color: #1db954;
-  }
-
-  /* 📱 Responsivo para telas pequenas */
-  @media (max-width: 600px) {
-    .spotify-widget {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .widget-cover {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 12px;
-    }
-
-    .widget-info {
-      margin-bottom: 10px;
-    }
-
-    .widget-title {
-      font-size: 18px;
-    }
-
-    .widget-artist {
-      font-size: 15px;
-    }
-
-    .widget-controls {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      width: 100%;
-    }
-
-    .widget-controls i {
-      font-size: 26px;
-    }
-  }
+}
 </style>
 
   <script>
