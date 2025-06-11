@@ -119,57 +119,6 @@
       line-height: 1.6;
     }
 
-    .spotify-player {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 30px;
-      cursor: default;
-    }
-
-    .spotify-player .capa {
-      width: 160px;
-      height: 160px;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(255, 0, 0, 0.6);
-    }
-
-    .spotify-player .info {
-      color: white;
-      text-align: left;
-      max-width: 200px;
-    }
-
-    .spotify-player .musica-titulo {
-      font-weight: bold;
-      font-size: 18px;
-      color: #1db954;
-      margin-bottom: 4px;
-    }
-
-    .spotify-player .musica-artista {
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    .spotify-player .btn-play {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-    }
-
-    .spotify-player .btn-play svg {
-      width: 48px;
-      height: 48px;
-      fill: #1db954;
-    }
-
-    .spotify-player .btn-play:hover svg {
-      fill: #17a74a;
-    }
-
     @media (max-width: 600px) {
       .carrossel {
         height: 300px;
@@ -187,17 +136,7 @@
       .mensagem {
         font-size: 16px;
       }
-
-      .spotify-player {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .spotify-player .info {
-        max-width: 100%;
-        text-align: center;
-      }
-    }
+      
   </style>
 </head>
 <body>
@@ -262,8 +201,8 @@
   <div class="spotify-widget">
     <img src="capa_musica.jpg" alt="Capa do Álbum" class="widget-cover" />
     <div class="widget-info">
-      <div class="widget-title">War Eternal</div>
-      <div class="widget-artist">Arch Enemy</div>
+      <div class="widget-title">Seu Astral</div>
+      <div class="widget-artist">Jorge & Mateus</div>
     </div>
     <div class="widget-controls">
       <i id="likeBtn" class="fa-regular fa-heart"></i>
@@ -271,7 +210,7 @@
     </div>
   </div>
 
-  <audio id="audioWidget" src="war_eternal.mp3"></audio>
+  <audio id="audioWidget" src="seu_astral.mp3"></audio>
 
   <!-- Font Awesome para os ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
