@@ -168,11 +168,15 @@
     <img src="imagem10.jpg" alt="Foto 10" />
     <img src="imagem11.jpg" alt="Foto 11" />
     <img src="imagem12.jpg" alt="Foto 12" />
-  </div>
+
+    <!-- Botões laterais dentro do carrossel -->
     <div class="carrossel-botoes">
       <button onclick="anteriorImagem()">❮</button>
       <button onclick="proximaImagem()">❯</button>
     </div>
+    <div class="indicadores" id="indicadores"></div>
+  </div>
+
   </div>
   <h2>Leonardo & Isabella</h2>
  <div class="mensagem">
@@ -309,104 +313,211 @@
   }
 }
 </style>
+<style>
+  /* ... mantém seus estilos existentes ... */
+
+  .carrossel {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    height: 1000px;
+  }
+
+  .carrossel img {
+    max-width: 90%;
+    max-height: 1000px;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .carrossel img.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .carrossel-botoes {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 30px;
+    pointer-events: none;
+  }
+
+  .carrossel-botoes button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 32px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    pointer-events: all;
+  }
+
+  .carrossel-botoes button:hover {
+    background-color: rgba(255, 0, 0, 0.6);
+  }
+
+  .indicadores {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+ .indicadores span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(211, 211, 211, 0.234);
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 1.0s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); /* opcional: melhora contraste */
+}
+
+  .indicadores .ativo {
+    background-color: black;
+  }
+
+  @media (max-width: 600px) {
+    .carrossel {
+      height: 300px;
+    }
+
+    .carrossel img {
+      max-height: 300px;
+      max-width: 100%;
+    }
+
+    h1 {
+      font-size: 12px;
+    }
+
+    .mensagem {
+      font-size: 16px;
+    }
+  }
+</style>
 
   <script>
-    // Contador e carrossel permanecem iguais
-    const dataInicial = new Date('2024-06-27T00:00:00');
+  // CONTADOR permanece igual
 
-    function calcularTempo(dataInicial, dataFinal) {
-      let anos = dataFinal.getFullYear() - dataInicial.getFullYear();
-      let meses = dataFinal.getMonth() - dataInicial.getMonth();
-      let dias = dataFinal.getDate() - dataInicial.getDate();
+  const dataInicial = new Date('2024-06-27T00:00:00');
 
-      if (dias < 0) {
-        meses--;
-        const ultimoDiaMesAnterior = new Date(dataFinal.getFullYear(), dataFinal.getMonth(), 0).getDate();
-        dias += ultimoDiaMesAnterior;
-      }
+  function calcularTempo(dataInicial, dataFinal) {
+    let anos = dataFinal.getFullYear() - dataInicial.getFullYear();
+    let meses = dataFinal.getMonth() - dataInicial.getMonth();
+    let dias = dataFinal.getDate() - dataInicial.getDate();
 
-      if (meses < 0) {
-        anos--;
-        meses += 12;
-      }
-
-      const diffMs = dataFinal - new Date(dataFinal.getFullYear(), dataFinal.getMonth(), dataFinal.getDate());
-      const horas = Math.floor(diffMs / (1000 * 60 * 60)) % 24;
-      const minutos = Math.floor(diffMs / (1000 * 60)) % 60;
-      const segundos = Math.floor(diffMs / 1000) % 60;
-
-      return { anos, meses, dias, horas, minutos, segundos };
+    if (dias < 0) {
+      meses--;
+      const ultimoDiaMesAnterior = new Date(dataFinal.getFullYear(), dataFinal.getMonth(), 0).getDate();
+      dias += ultimoDiaMesAnterior;
     }
 
-    function atualizarContador() {
-      const agora = new Date();
-      const tempo = calcularTempo(dataInicial, agora);
-
-      document.getElementById('anos').textContent = tempo.anos;
-      document.getElementById('meses').textContent = tempo.meses;
-      document.getElementById('dias').textContent = tempo.dias;
-      document.getElementById('horas').textContent = tempo.horas;
-      document.getElementById('minutos').textContent = tempo.minutos;
-      document.getElementById('segundos').textContent = tempo.segundos;
+    if (meses < 0) {
+      anos--;
+      meses += 12;
     }
 
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
+    const diffMs = dataFinal - new Date(dataFinal.getFullYear(), dataFinal.getMonth(), dataFinal.getDate());
+    const horas = Math.floor(diffMs / (1000 * 60 * 60)) % 24;
+    const minutos = Math.floor(diffMs / (1000 * 60)) % 60;
+    const segundos = Math.floor(diffMs / 1000) % 60;
 
-    const imagens = document.querySelectorAll('.carrossel img');
-    let index = 0;
+    return { anos, meses, dias, horas, minutos, segundos };
+  }
 
-    function mostrarImagem(n) {
-      imagens.forEach(img => img.classList.remove('active'));
-      imagens[n].classList.add('active');
-    }
+  function atualizarContador() {
+    const agora = new Date();
+    const tempo = calcularTempo(dataInicial, agora);
 
-    function proximaImagem() {
-      index = (index + 1) % imagens.length;
+    document.getElementById('anos').textContent = tempo.anos;
+    document.getElementById('meses').textContent = tempo.meses;
+    document.getElementById('dias').textContent = tempo.dias;
+    document.getElementById('horas').textContent = tempo.horas;
+    document.getElementById('minutos').textContent = tempo.minutos;
+    document.getElementById('segundos').textContent = tempo.segundos;
+  }
+
+  setInterval(atualizarContador, 1000);
+  atualizarContador();
+
+  // NOVO CÓDIGO DO CARROSSEL + BOLINHAS
+  const imagens = document.querySelectorAll('.carrossel img');
+  const indicadoresContainer = document.getElementById('indicadores');
+  let index = 0;
+
+  // Criar bolinhas
+  imagens.forEach((_, i) => {
+    const bolinha = document.createElement('span');
+    bolinha.addEventListener('click', () => {
+      index = i;
       mostrarImagem(index);
-    }
-
-    function anteriorImagem() {
-      index = (index - 1 + imagens.length) % imagens.length;
-      mostrarImagem(index);
-    }
-
-    if (imagens.length > 0) mostrarImagem(index);
-
-    function alternarAudio(botao) {
-      const audio = document.getElementById('audio');
-      const icone = document.getElementById('icone-play');
-      if (audio.paused) {
-        audio.play();
-        icone.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-      } else {
-        audio.pause();
-        icone.innerHTML = '<path d="M8 5v14l11-7z"/>';
-      }
-    }
-
-    // NOVO SCRIPT DO PLAYER ESTILO SPOTIFY
-    const audioWidget = document.getElementById('audioWidget');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const likeBtn = document.getElementById('likeBtn');
-
-    playPauseBtn.addEventListener('click', () => {
-      if (audioWidget.paused) {
-        audioWidget.play();
-        playPauseBtn.classList.remove('fa-play');
-        playPauseBtn.classList.add('fa-pause');
-      } else {
-        audioWidget.pause();
-        playPauseBtn.classList.remove('fa-pause');
-        playPauseBtn.classList.add('fa-play');
-      }
     });
+    indicadoresContainer.appendChild(bolinha);
+  });
 
-    likeBtn.addEventListener('click', () => {
-      likeBtn.classList.toggle('liked');
-      likeBtn.classList.toggle('fa-regular');
-      likeBtn.classList.toggle('fa-solid');
-    });
-  </script>
+  function mostrarImagem(n) {
+    imagens.forEach(img => img.classList.remove('active'));
+    imagens[n].classList.add('active');
+
+    const bolinhas = document.querySelectorAll('.indicadores span');
+    bolinhas.forEach(b => b.classList.remove('ativo'));
+    bolinhas[n].classList.add('ativo');
+  }
+
+  function proximaImagem() {
+    index = (index + 1) % imagens.length;
+    mostrarImagem(index);
+  }
+
+  function anteriorImagem() {
+    index = (index - 1 + imagens.length) % imagens.length;
+    mostrarImagem(index);
+  }
+
+  if (imagens.length > 0) mostrarImagem(index);
+
+  // PLAYER SPOTIFY permanece igual
+  const audioWidget = document.getElementById('audioWidget');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const likeBtn = document.getElementById('likeBtn');
+
+  playPauseBtn.addEventListener('click', () => {
+    if (audioWidget.paused) {
+      audioWidget.play();
+      playPauseBtn.classList.remove('fa-play');
+      playPauseBtn.classList.add('fa-pause');
+    } else {
+      audioWidget.pause();
+      playPauseBtn.classList.remove('fa-pause');
+      playPauseBtn.classList.add('fa-play');
+    }
+  });
+
+  likeBtn.addEventListener('click', () => {
+    likeBtn.classList.toggle('liked');
+    likeBtn.classList.toggle('fa-regular');
+    likeBtn.classList.toggle('fa-solid');
+  });
+</script>
 </body>
 </html>
