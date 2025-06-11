@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leonardo & Isabella</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      background-color: #fffafa;
+      color: black;
+      font-family: 'Libre Baskerville', Baskerville, serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: red;
+      margin-top: 20px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 55px;
+    }
+
+    h2 {
+      color: DarkRed;
+      margin-top: 20px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+    }
+
+    #contador {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .tempo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tempo-numero {
+      background-color: #222;
+      padding: 15px 20px;
+      border-radius: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+    }
+
+    .tempo-legenda {
+      margin-top: 5px;
+      font-size: 16px;
+    }
+
+    .carrossel {
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+      height: 1000px;
+    }
+
+    .carrossel img {
+      max-width: 90%;
+      max-height: 1000px;
+      width: auto;
+      height: auto;
+      border-radius: 20px;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carrossel img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .carrossel-botoes {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .carrossel-botoes button {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 32px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .carrossel-botoes button:hover {
+      background-color: rgba(255, 0, 0, 0.6);
+    }
+
+    .mensagem {
+      width: 80%;
+      margin: 0 auto 30px auto;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .carrossel {
+        height: 300px;
+      }
+
+      .carrossel img {
+        max-height: 300px;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+        h2 {
+        font-size: 26px;
+      }
+
+      .mensagem {
+        font-size: 16px;
+      }
+      
+  </style>
+</head>
+<body>
+  <h1>O Nosso Amor</h1>
+  <div class="mensagem">
+    Já se passaram
+  </div>
+  <div id="contador">
+    <div class="tempo-item"><div class="tempo-numero" id="anos">0</div><div class="tempo-legenda">Anos</div></div>
+    <div class="tempo-item"><div class="tempo-numero" id="meses">0</div><div class="tempo-legenda">Meses</div></div>
+    <div class="tempo-item"><div class="tempo-numero" id="dias">0</div><div class="tempo-legenda">Dias</div></div>
+    <div class="tempo-item"><div class="tempo-numero" id="horas">0</div><div class="tempo-legenda">Horas</div></div>
+    <div class="tempo-item"><div class="tempo-numero" id="minutos">0</div><div class="tempo-legenda">Minutos</div></div>
+    <div class="tempo-item"><div class="tempo-numero" id="segundos">0</div><div class="tempo-legenda">Segundos</div></div>
+  </div>
+  <div class="mensagem">
+    Desde a primeira vez que te vi
+  </div>
+  <div class="carrossel">
+    <img src="imagem1.jpg" class="active" alt="Foto 1" />
+    <img src="imagem2.jpg" alt="Foto 2" />
+    <img src="imagem3.jpg" alt="Foto 3" />
+    <img src="imagem4.jpg" alt="Foto 4" />
+    <img src="imagem5.jpg" alt="Foto 5" />
+    <img src="imagem6.jpg" alt="Foto 6" />
+    <img src="imagem7.jpg" alt="Foto 7" />
+    <img src="imagem8.jpg" alt="Foto 8" />
+    <img src="imagem9.jpg" alt="Foto 9" />
+    <img src="imagem10.jpg" alt="Foto 10" />
+    <img src="imagem11.jpg" alt="Foto 11" />
+    <img src="imagem12.jpg" alt="Foto 12" />
+
+    <!-- Botões laterais dentro do carrossel -->
+    <div class="carrossel-botoes">
+      <button onclick="anteriorImagem()">❮</button>
+      <button onclick="proximaImagem()">❯</button>
+    </div>
+    <div class="indicadores" id="indicadores"></div>
+  </div>
+
+  </div>
+  <h2>Leonardo & Isabella</h2>
+ <div class="mensagem">
+    Você veio quando eu já não acreditava mais em ninguém, quando já não tinha esperança nas pessoas. Há alguns meses, você mudou completamente a minha forma de pensar.<br /><br />
+    Você é linda como a noite estrelada de Van Gogh. Seus olhos têm o brilho de um lírio encantado. Quando estou com você, me sinto vivo, como quando a Rapunzel saiu da torre.<br /><br />
+    Você me dedicou uma música do Luan Santana há alguns meses — algo que ninguém nunca fez por mim — e agora, eu dedico uma a você: Jorge e Mateus – Seu Astral, mais especificamente:<br />
+    “Eu viajei no seu olhar, no teu sorriso<br />
+    Nos teus segredos<br />
+    Eu descobri o que é amar<br />
+    Pelo toque dos seus beijos”
+  </div>
+
+
+  <audio id="audio" src="seu_astral.mp3" preload="none"></audio>
+
+  <!-- NOVO PLAYER ESTILO SPOTIFY -->
+  <div class="spotify-widget">
+    <img src="capa_musica.jpg" alt="Capa do Álbum" class="widget-cover" />
+    <div class="widget-info">
+      <div class="widget-title">Seu Astral</div>
+      <div class="widget-artist">Jorge & Mateus</div>
+    </div>
+    <div class="widget-controls">
+      <i id="likeBtn" class="fa-regular fa-heart"></i>
+      <i id="playPauseBtn" class="fa-solid fa-play"></i>
+    </div>
+  </div>
+
+  <audio id="audioWidget" src="seu_astral.mp3"></audio>
+
+  <!-- Font Awesome para os ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+  .spotify-widget {
+  background-color: #5c3b1f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 380px;
+  margin: 40px auto;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
+  gap: 12px;
+}
+
+.widget-cover {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.widget-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.widget-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.widget-artist {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.widget-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.widget-controls i {
+  font-size: 22px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.widget-controls .fa-heart.liked {
+  color: red;
+}
+
+.widget-controls .fa-heart {
+  color: white;
+}
+
+.widget-controls .fa-play,
+.widget-controls .fa-pause {
+  color: white;
+}
+
+.widget-controls i:hover {
+  color: #1db954;
+}
+
+/* Responsivo para telas pequenas: manter em linha como Spotify mobile */
+@media (max-width: 600px) {
+  .spotify-widget {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    width: 95%;
+  }
+
+  .widget-cover {
+    width: 50px;
+    height: 50px;
+  }
+
+  .widget-info {
+    text-align: left;
+    margin: 0 10px;
+  }
+
+  .widget-title {
+    font-size: 15px;
+  }
+
+  .widget-artist {
+    font-size: 13px;
+  }
+
+  .widget-controls {
+    gap: 8px;
+  }
+
+  .widget-controls i {
+    font-size: 22px;
+  }
+}
+</style>
+<style>
+  /* ... mantém seus estilos existentes ... */
+
+  .carrossel {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    height: 1000px;
+  }
+
+  .carrossel img {
+    max-width: 90%;
+    max-height: 1000px;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .carrossel img.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .carrossel-botoes {
+    position: absolute;
+    top: 50%;
+    width: 110%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 30px;
+    pointer-events: none;
+  }
+
+  .carrossel-botoes button {
+    background-color: rgba(0, 0, 0, 0.277);
+    color: white;
+    border: none;
+    font-size: 32px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    pointer-events: all;
+  }
+
+  .carrossel-botoes button:hover {
+    background-color: rgba(255, 0, 0, 0.171);
+  }
+
+  .indicadores {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-40%);
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+ .indicadores span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(211, 211, 211, 0.234);
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 1.0s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); /* opcional: melhora contraste */
+}
+
+  .indicadores .ativo {
+    background-color: black;
+  }
+
+ @media (max-width: 600px) {
+  .carrossel {
+    height: 500px;
+  }
+
+  .carrossel img {
+    max-height: 500px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  .mensagem {
+    font-size: 20px;
+  }
+
+  .spotify-widget {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    width: 95%;
+  }
+
+  .widget-cover {
+    width: 50px;
+    height: 50px;
+  }
+
+  .widget-info {
+    text-align: left;
+    margin: 0 10px;
+  }
+
+  .widget-title {
+    font-size: 15px;
+  }
+
+  .widget-artist {
+    font-size: 13px;
+  }
+
+  .widget-controls {
+    gap: 8px;
+  }
+
+  .widget-controls i {
+    font-size: 22px;
+  }
+}
+
+</style>
+
+  <script>
+  // CONTADOR permanece igual
+
+  const dataInicial = new Date('2024-06-27T00:00:00');
+
+  function calcularTempo(dataInicial, dataFinal) {
+    let anos = dataFinal.getFullYear() - dataInicial.getFullYear();
+    let meses = dataFinal.getMonth() - dataInicial.getMonth();
+    let dias = dataFinal.getDate() - dataInicial.getDate();
+
+    if (dias < 0) {
+      meses--;
+      const ultimoDiaMesAnterior = new Date(dataFinal.getFullYear(), dataFinal.getMonth(), 0).getDate();
+      dias += ultimoDiaMesAnterior;
+    }
+
+    if (meses < 0) {
+      anos--;
+      meses += 12;
+    }
+
+    const diffMs = dataFinal - new Date(dataFinal.getFullYear(), dataFinal.getMonth(), dataFinal.getDate());
+    const horas = Math.floor(diffMs / (1000 * 60 * 60)) % 24;
+    const minutos = Math.floor(diffMs / (1000 * 60)) % 60;
+    const segundos = Math.floor(diffMs / 1000) % 60;
+
+    return { anos, meses, dias, horas, minutos, segundos };
+  }
+
+  function atualizarContador() {
+    const agora = new Date();
+    const tempo = calcularTempo(dataInicial, agora);
+
+    document.getElementById('anos').textContent = tempo.anos;
+    document.getElementById('meses').textContent = tempo.meses;
+    document.getElementById('dias').textContent = tempo.dias;
+    document.getElementById('horas').textContent = tempo.horas;
+    document.getElementById('minutos').textContent = tempo.minutos;
+    document.getElementById('segundos').textContent = tempo.segundos;
+  }
+
+  setInterval(atualizarContador, 1000);
+  atualizarContador();
+
+  // NOVO CÓDIGO DO CARROSSEL + BOLINHAS
+  const imagens = document.querySelectorAll('.carrossel img');
+  const indicadoresContainer = document.getElementById('indicadores');
+  let index = 0;
+
+  // Criar bolinhas
+  imagens.forEach((_, i) => {
+    const bolinha = document.createElement('span');
+    bolinha.addEventListener('click', () => {
+      index = i;
+      mostrarImagem(index);
+    });
+    indicadoresContainer.appendChild(bolinha);
+  });
+
+  function mostrarImagem(n) {
+    imagens.forEach(img => img.classList.remove('active'));
+    imagens[n].classList.add('active');
+
+    const bolinhas = document.querySelectorAll('.indicadores span');
+    bolinhas.forEach(b => b.classList.remove('ativo'));
+    bolinhas[n].classList.add('ativo');
+  }
+
+  function proximaImagem() {
+    index = (index + 1) % imagens.length;
+    mostrarImagem(index);
+  }
+
+  function anteriorImagem() {
+    index = (index - 1 + imagens.length) % imagens.length;
+    mostrarImagem(index);
+  }
+
+  if (imagens.length > 0) mostrarImagem(index);
+
+  // PLAYER SPOTIFY permanece igual
+  const audioWidget = document.getElementById('audioWidget');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const likeBtn = document.getElementById('likeBtn');
+
+  playPauseBtn.addEventListener('click', () => {
+    if (audioWidget.paused) {
+      audioWidget.play();
+      playPauseBtn.classList.remove('fa-play');
+      playPauseBtn.classList.add('fa-pause');
+    } else {
+      audioWidget.pause();
+      playPauseBtn.classList.remove('fa-pause');
+      playPauseBtn.classList.add('fa-play');
+    }
+  });
+
+  likeBtn.addEventListener('click', () => {
+    likeBtn.classList.toggle('liked');
+    likeBtn.classList.toggle('fa-regular');
+    likeBtn.classList.toggle('fa-solid');
+  });
+</script>
+</body>
+</html>
