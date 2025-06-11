@@ -66,7 +66,6 @@
       align-items: center;
       margin-bottom: 20px;
       position: relative;
-      height: 1000px; /* altura máxima do carrossel */
     }
 
     .carrossel img {
@@ -77,6 +76,7 @@
       position: absolute;
       opacity: 0;
       transition: opacity 1s ease-in-out;
+      border-radius: 20px;
     }
 
     .carrossel img.active {
@@ -154,6 +154,7 @@
       .carrossel img {
         max-height: 300px;
         max-width: 100%;
+        border-radius: 15px;
       }
 
       h1 {
@@ -178,9 +179,8 @@
 </head>
 <body>
   <h1>O Nosso Amor</h1>
-  <div class="mensagem">
-    já se passaram
-  </div>
+  <div class="mensagem">já se passaram</div>
+
   <div id="contador">
     <div class="tempo-item"><div class="tempo-numero" id="anos">0</div><div class="tempo-legenda">Anos</div></div>
     <div class="tempo-item"><div class="tempo-numero" id="meses">0</div><div class="tempo-legenda">Meses</div></div>
@@ -189,9 +189,9 @@
     <div class="tempo-item"><div class="tempo-numero" id="minutos">0</div><div class="tempo-legenda">Minutos</div></div>
     <div class="tempo-item"><div class="tempo-numero" id="segundos">0</div><div class="tempo-legenda">Segundos</div></div>
   </div>
-  <div class="mensagem">
-    Desde a primeira vez que te ví
-  </div>
+
+  <div class="mensagem">Desde a primeira vez que te ví</div>
+
   <div class="carrossel">
     <img src="imagem1.jpg" class="active" alt="Foto 1" />
     <img src="imagem2.jpg" alt="Foto 2" />
@@ -206,7 +206,9 @@
     <img src="imagem11.jpg" alt="Foto 11" />
     <img src="imagem12.jpg" alt="Foto 12" />
   </div>
+
   <h2>Leonardo & Isabella</h2>
+
   <div class="mensagem">
     Você veio quando já não acreditava mais em ninguém, quando já não tinha esperança nas pessoas e a alguns meses atrás você mudou completamente minha forma de pensar, você é linda igual a noite estrelada de Van Gogh, seus olhos têm o brilho de um Lírio encantado, quando estou com você me sinto vivo igual quando a Rapunzel saiu da torre.<br /><br />
     Você me dedicou uma música do Luan Santana há alguns meses atrás, coisa que ninguém nunca fez para mim, e agora, eu dedico uma a você: Jorge e Mateus - Seu Astral, mais especificamente:<br />
