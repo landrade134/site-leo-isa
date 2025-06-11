@@ -277,66 +277,105 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
+  .spotify-widget {
+    background-color: #5c3b1f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 380px;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
+    gap: 12px;
+  }
+
+  .widget-cover {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .widget-info {
+    flex-grow: 1;
+  }
+
+  .widget-title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .widget-artist {
+    color: #ccc;
+    font-size: 14px;
+  }
+
+  .widget-controls i {
+    font-size: 22px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .widget-controls .fa-heart.liked {
+    color: red;
+  }
+
+  .widget-controls .fa-heart {
+    color: white;
+  }
+
+  .widget-controls .fa-play,
+  .widget-controls .fa-pause {
+    color: white;
+  }
+
+  .widget-controls i:hover {
+    color: #1db954;
+  }
+
+  /* 📱 Responsivo para telas pequenas */
+  @media (max-width: 600px) {
     .spotify-widget {
-      background-color: #5c3b1f;
-      color: white;
-      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 16px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 380px;
-      margin: 40px auto;
-      box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
+      text-align: center;
+      padding: 20px;
     }
 
     .widget-cover {
-      width: 64px;
-      height: 64px;
-      border-radius: 8px;
-      object-fit: cover;
-      margin-right: 16px;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 12px;
     }
 
     .widget-info {
-      flex-grow: 1;
+      margin-bottom: 10px;
     }
 
     .widget-title {
-      font-weight: bold;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .widget-artist {
-      color: #ccc;
-      font-size: 14px;
+      font-size: 15px;
+    }
+
+    .widget-controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
     }
 
     .widget-controls i {
-      font-size: 20px;
-      margin-left: 10px;
-      cursor: pointer;
-      transition: color 0.3s ease;
+      font-size: 26px;
     }
-
-    .widget-controls .fa-heart.liked {
-      color: red;
-    }
-
-    .widget-controls .fa-heart {
-      color: white;
-    }
-
-    .widget-controls .fa-play,
-    .widget-controls .fa-pause {
-      color: white;
-    }
-
-    .widget-controls i:hover {
-      color: #1db954;
-    }
-  </style>
+  }
+</style>
 
   <script>
     // Contador e carrossel permanecem iguais
